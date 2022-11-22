@@ -14,6 +14,7 @@ repositories {
     google()
     mavenCentral()
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+
 }
 
 kotlin {
@@ -27,6 +28,7 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 implementation(compose.desktop.currentOs)
+
             }
         }
         val jvmTest by getting

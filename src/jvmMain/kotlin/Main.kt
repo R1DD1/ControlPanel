@@ -1,11 +1,12 @@
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.platform.LocalViewConfiguration
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Outline
+import androidx.compose.ui.graphics.Path
 import user.User
 import androidx.compose.ui.window.*
-import apps.auth
 import apps.panel
-//import apps.ControlPanel
+import elements.toolBar
 import user.Permission
 import utils.UserHelper
 
@@ -23,12 +24,20 @@ fun main() = application {
         undecorated = true,
         resizable = true,
     ) {
+        toolBar()
         panel()
     }
-
 }
 
-
-
-
+fun createOutline(size: Size): Outline {
+    val trianglePath = Path().apply {
+        // Moves to top center position
+        moveTo(size.width / 2f, 0f)
+        // Add line to right corner above circle
+        lineTo(x = size.width, y = size.height)
+        //Add line to left corner above circle
+        lineTo(x = 0f, y = size.height)
+    }
+    return Outline.Generic(path = trianglePath)
+}
 
