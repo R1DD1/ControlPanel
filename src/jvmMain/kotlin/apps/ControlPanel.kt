@@ -17,57 +17,5 @@ import androidx.compose.ui.window.ApplicationScope
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ApplicationScope.panel() {
-    Row {
-        // arrow left
-        Box(modifier = Modifier
-            .weight(1f)
-            .fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            Card(
-                modifier = Modifier.size(62.dp).rotate(180f),
-                shape = CircleShape,
-                elevation = 2.dp
-            ) {
-                Image(
-                    painter = painterResource("arrow.png"),
-                    alignment = Alignment.Center,
-                    contentDescription = "arrowLeft",
-                    modifier = Modifier
-                        .background(MaterialTheme.colors.primary),
-                    contentScale = ContentScale.FillBounds
-                )
-            }
-        }
 
-        //content
-        Box(modifier = Modifier
-            .weight(12f)
-            .fillMaxSize()
-        ) {
-
-        }
-
-        // arrow right
-        Box(modifier = Modifier
-            .weight(1f)
-            .fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            Card(
-                modifier = Modifier.size(62.dp),
-                shape = CircleShape,
-                elevation = 2.dp
-            ) {
-                Image(
-                    painter = painterResource("arrow.png"),
-                    alignment = Alignment.Center,
-                    contentDescription = "arrowLeft",
-                    modifier = Modifier
-                        .background(MaterialTheme.colors.primary),
-                    contentScale = ContentScale.FillBounds
-                )
-            }
-        }
-    }
 }
