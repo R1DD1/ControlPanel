@@ -6,8 +6,8 @@ import androidx.compose.ui.graphics.Path
 import user.User
 import androidx.compose.ui.window.*
 import apps.auth
-import elements.Timer
 import elements.toolBar
+import elements.userBar
 import user.Permission
 import utils.UserHelper
 
@@ -23,9 +23,10 @@ fun main() = application {
         onCloseRequest = { exitApplication() },
         title = "Прототип",
         undecorated = true,
-        resizable = true,
+        resizable = false,
     ) {
         toolBar()
+        userBar()
         auth()
     }
 }

@@ -22,7 +22,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.*
-import elements.Timer
+import theme.Theme
 
 
 import utils.Auth
@@ -34,24 +34,14 @@ fun ApplicationScope.auth() {
         var username by remember { mutableStateOf("") }
         var password by remember { mutableStateOf("") }
 
-        Row {
-            Box(modifier = Modifier
-                .weight(7f)
-            ) {
+        Column(horizontalAlignment =  Alignment.CenterHorizontally, modifier = Modifier.fillMaxSize()) {
 
-            }
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(3f),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
                 //title
                 Text(
                     text = "Авторизация",
                     fontWeight = FontWeight.Bold,
                     fontSize = 26.sp,
-                    color = MaterialTheme.colors.primary.copy(alpha = ContentAlpha.high),
+                    color = Theme.primary(),
                     modifier = Modifier
                         .padding(top = 155.dp, bottom = 10.dp)
                 )
@@ -85,8 +75,10 @@ fun ApplicationScope.auth() {
                     label = { Text("Логин") },
                     singleLine = true,
                     shape = RoundedCornerShape(10),
+                    colors = Theme.textFieldColors(),
                     modifier = Modifier
                         .padding(bottom = 25.dp, top = 20.dp)
+
 
                 )
 
@@ -98,15 +90,17 @@ fun ApplicationScope.auth() {
                     singleLine = true,
                     shape = RoundedCornerShape(10),
                     modifier = Modifier,
+                    colors = Theme.textFieldColors(),
                     visualTransformation = PasswordVisualTransformation()
                 )
 
                 //send button
                 Button(
+                    colors = Theme.buttonColors(),
                     onClick = {
                         if (Auth.auth(username, password)) {
                             authSuccess = true
-                            Timer()::start
+
                         } else {
                             username = ""
                             password = ""
@@ -138,7 +132,7 @@ fun ApplicationScope.auth() {
                         withStyle(
                             style = SpanStyle(
                                 fontSize = 12.sp,
-                                color = MaterialTheme.colors.primary,
+                                color = Color(0f, 0f, 0f, .7f),
                                 textDecoration = TextDecoration.Underline,
                             )
                         ) { append("Запросить") }
@@ -146,7 +140,9 @@ fun ApplicationScope.auth() {
                     modifier = Modifier
                         .padding(top = 15.dp)
                 )
-            }
+
+
+
         }
     } else {
         Row {
@@ -157,17 +153,14 @@ fun ApplicationScope.auth() {
                 contentAlignment = Alignment.Center
             ) {
                 Card(
-                    modifier = Modifier.size(62.dp).rotate(180f),
-                    shape = CircleShape,
-                    elevation = 2.dp
+                    modifier = Modifier.size(80.dp).rotate(180f),
+                    shape = CircleShape
                 ) {
                     Image(
                         painter = painterResource("arrow.png"),
                         alignment = Alignment.Center,
                         contentDescription = "arrowLeft",
-                        modifier = Modifier
-                            .background(MaterialTheme.colors.primary),
-                        contentScale = ContentScale.FillBounds
+                        modifier = Modifier,
                     )
                 }
             }
@@ -180,10 +173,10 @@ fun ApplicationScope.auth() {
                 contentAlignment = Alignment.BottomCenter
             ) {
                 Text(
-                    text = "До звонка " + Timer().formattedTime,
+                    text = "До звонка " + "00:00",
                     fontSize = 92.sp,
                     fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colors.primary
+                    color = Color(0f, 0f, 0f, .5f)
                 )
             }
 
@@ -194,17 +187,14 @@ fun ApplicationScope.auth() {
                 contentAlignment = Alignment.Center
             ) {
                 Card(
-                    modifier = Modifier.size(62.dp),
-                    shape = CircleShape,
-                    elevation = 2.dp
+                    modifier = Modifier.size(80.dp),
+                    shape = CircleShape
                 ) {
                     Image(
                         painter = painterResource("arrow.png"),
                         alignment = Alignment.Center,
-                        contentDescription = "arrowLeft",
-                        modifier = Modifier
-                            .background(MaterialTheme.colors.primary),
-                        contentScale = ContentScale.FillBounds
+                        contentDescription = "arrowRight",
+                        modifier = Modifier,
                     )
                 }
             }
