@@ -17,16 +17,23 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.*
+import apps.content.News
+import apps.content.list
+import elements.toolBar
+import elements.userBar
 import theme.Theme
 
 
 import utils.Auth
+import utils.ContentHelper
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ApplicationScope.auth() {
     var authSuccess by remember { mutableStateOf(false) }
@@ -140,62 +147,80 @@ fun ApplicationScope.auth() {
                     modifier = Modifier
                         .padding(top = 15.dp)
                 )
-
-
-
         }
     } else {
-        Row {
-            // arrow left
-            Box(modifier = Modifier
-                .weight(1f)
-                .fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Card(
-                    modifier = Modifier.size(80.dp).rotate(180f),
-                    shape = CircleShape
+        var currentContent by remember { mutableStateOf(0) }
+
+        Column (modifier = Modifier.fillMaxSize()) {
+            // init userBar
+            toolBar()
+
+            Row {
+                // arrow left
+                Box(modifier = Modifier
+                    .weight(1f)
+                    .fillMaxSize(),
+                    contentAlignment = Alignment.Center
                 ) {
-                    Image(
-                        painter = painterResource("arrow.png"),
-                        alignment = Alignment.Center,
-                        contentDescription = "arrowLeft",
-                        modifier = Modifier,
-                    )
+                    Card(
+                        modifier = Modifier.size(80.dp).offset(y = (-50).dp).rotate(180f),
+                        shape = CircleShape,
+                         onClick = { currentContent = ContentHelper.previous(currentContent) }
+                    ) {
+                        Image(
+                            painter = painterResource("arrow.png"),
+                            alignment = Alignment.Center,
+                            contentDescription = "arrowRight",
+                            modifier = Modifier,
+                        )
+                    }
                 }
-            }
 
-            //content
-            Box(modifier = Modifier
-                .weight(12f)
-                .fillMaxSize()
-                .padding(bottom = 50.dp),
-                contentAlignment = Alignment.BottomCenter
-            ) {
-                Text(
-                    text = "До звонка " + "00:00",
-                    fontSize = 92.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color(0f, 0f, 0f, .5f)
-                )
-            }
+                //content
+                Box(modifier = Modifier
+                    .weight(12f)
+                    .fillMaxSize()
+                    .padding(bottom = 50.dp),
 
-            // arrow right
-            Box(modifier = Modifier
-                .weight(1f)
-                .fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Card(
-                    modifier = Modifier.size(80.dp),
-                    shape = CircleShape
                 ) {
-                    Image(
-                        painter = painterResource("arrow.png"),
-                        alignment = Alignment.Center,
-                        contentDescription = "arrowRight",
-                        modifier = Modifier,
-                    )
+                    Column (horizontalAlignment = Alignment.CenterHorizontally) {
+                        Box(modifier = Modifier
+                            .weight(9f)
+                            .fillMaxSize(),
+                            contentAlignment = Alignment.Center)
+                        {
+                            list[currentContent].create()
+                        }
+
+                        Text(
+                            text = "До звонка " + "00:00",
+                            fontSize = 92.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color(0f, 0f, 0f, .5f),
+                            modifier = Modifier.weight(1f),
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+
+                // arrow right
+                Box(modifier = Modifier
+                    .weight(1f)
+                    .fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Card(
+                        modifier = Modifier.size(80.dp).offset(y = (-50).dp),
+                        shape = CircleShape,
+                        onClick = { currentContent = ContentHelper.next(currentContent) }
+                    ) {
+                        Image(
+                            painter = painterResource("arrow.png"),
+                            alignment = Alignment.Center,
+                            contentDescription = "arrowRight",
+                            modifier = Modifier,
+                        )
+                    }
                 }
             }
         }

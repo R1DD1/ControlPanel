@@ -26,7 +26,7 @@ fun main() = application {
         resizable = false,
     ) {
         toolBar()
-        userBar()
+
         auth()
     }
 }

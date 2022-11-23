@@ -71,13 +71,13 @@ fun ApplicationScope.userBar() {
         ) {
             Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.End) {
                Card (
-                   modifier = Modifier.size(100.dp).fillMaxHeight().padding(10.dp),
+                   modifier = Modifier.fillMaxHeight().padding(10.dp),
                        ) {
                    Image(
                        painter = painterResource("userprofile.png"),
                        alignment = Alignment.Center,
                        contentDescription = "userProfile",
-                       modifier = Modifier.background(Color(0f,0f,0f, .0f)),
+                       modifier = Modifier.background(Theme.secondary()),
                    )
                }
             }

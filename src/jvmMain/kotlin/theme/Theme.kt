@@ -6,8 +6,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 object Theme {
-    private val primary = Color(245, 222,179)
-    private val secondary = Color(208, 176, 132)
+    private val secondary = Color(245, 222,179)
+    private val primary = Color(208, 176, 132)
 
     fun primary() = primary
     fun secondary() = secondary
@@ -19,7 +19,7 @@ object Theme {
         cursorColor: Color = Color.Black,
         backgroundColor: Color = Color.White,
         errorCursorColor: Color = Color.White,
-
+        focusedIndicatorColor: Color = primary()
     ) = TextFieldDefaults.textFieldColors(
         textColor = textColor,
         disabledTextColor = disabledTextColor,
@@ -27,16 +27,16 @@ object Theme {
         cursorColor = cursorColor,
         errorCursorColor = errorCursorColor,
         focusedLabelColor = Color(0f,0f,.0f, .5f),
-        focusedIndicatorColor = primary
+        focusedIndicatorColor = focusedIndicatorColor
 
     )
 
     @Composable
     fun buttonColors(
-        backgroundColor: Color = primary,
+        backgroundColor: Color = primary(),
         contentColor: Color = Color.White
     ) = ButtonDefaults.buttonColors(
-        backgroundColor = primary,
-        contentColor =contentColor
+        backgroundColor = backgroundColor,
+        contentColor = contentColor
     )
 }
