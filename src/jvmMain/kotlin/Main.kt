@@ -6,7 +6,7 @@ import androidx.compose.ui.graphics.Path
 import user.User
 import androidx.compose.ui.window.*
 import apps.auth
-import apps.panel
+import elements.Timer
 import elements.toolBar
 import user.Permission
 import utils.UserHelper

@@ -22,7 +22,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.*
-
+import elements.Timer
 
 
 import utils.Auth
@@ -106,6 +106,7 @@ fun ApplicationScope.auth() {
                     onClick = {
                         if (Auth.auth(username, password)) {
                             authSuccess = true
+                            Timer()::start
                         } else {
                             username = ""
                             password = ""
@@ -175,8 +176,15 @@ fun ApplicationScope.auth() {
             Box(modifier = Modifier
                 .weight(12f)
                 .fillMaxSize()
+                .padding(bottom = 50.dp),
+                contentAlignment = Alignment.BottomCenter
             ) {
-
+                Text(
+                    text = "До звонка " + Timer().formattedTime,
+                    fontSize = 92.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colors.primary
+                )
             }
 
             // arrow right
