@@ -160,7 +160,7 @@ fun ApplicationScope.auth() {
                     contentAlignment = Alignment.Center
                 ) {
                     Card(
-                        modifier = Modifier.size(80.dp).offset(y = (-50).dp).rotate(180f),
+                        modifier = Modifier.size(80.dp).offset(y = (-130).dp).rotate(180f),
                         shape = CircleShape,
                          onClick = { currentContent = ContentHelper.previous(currentContent) }
                     ) {
@@ -213,7 +213,7 @@ fun ApplicationScope.auth() {
                     contentAlignment = Alignment.Center
                 ) {
                     Card(
-                        modifier = Modifier.size(80.dp).offset(y = (-50).dp),
+                        modifier = Modifier.size(80.dp).offset(y = (-130).dp),
                         shape = CircleShape,
                         onClick = { currentContent = ContentHelper.next(currentContent) }
                     ) {
