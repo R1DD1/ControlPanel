@@ -34,7 +34,6 @@ fun ApplicationScope.toolBar() {
                 .fillMaxSize()
 
         ) {
-
             Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.End) {
                 Card(
                     modifier = Modifier.size(20.dp).padding(5.dp),

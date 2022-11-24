@@ -23,23 +23,26 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.*
-import apps.content.News
 import apps.content.list
 import elements.toolBar
-import elements.userBar
 import theme.Theme
+import user.User
 
 
 import utils.Auth
 import utils.ContentHelper
+import utils.UserHelper
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ApplicationScope.auth() {
     var authSuccess by remember { mutableStateOf(false) }
+    var user : User? by remember { mutableStateOf(null) }
     if (!authSuccess) {
         var username by remember { mutableStateOf("") }
         var password by remember { mutableStateOf("") }
+
+
 
         Column(horizontalAlignment =  Alignment.CenterHorizontally, modifier = Modifier.fillMaxSize()) {
 
@@ -107,7 +110,7 @@ fun ApplicationScope.auth() {
                     onClick = {
                         if (Auth.auth(username, password)) {
                             authSuccess = true
-
+                            user = UserHelper.getUser(username)
                         } else {
                             username = ""
                             password = ""
@@ -151,9 +154,27 @@ fun ApplicationScope.auth() {
     } else {
         var currentContent by remember { mutableStateOf(0) }
 
+        if (user!!.permission.canSeeControlPanel) {
+            Card(
+                modifier = Modifier
+                    .size(17.dp)
+                    .absoluteOffset(x = 4.dp, y = 1.dp),
+                onClick = {  }
+            ) {
+                Image(
+                    painter = painterResource("gear.png"),
+                    alignment = Alignment.Center,
+                    contentDescription = "edit",
+                    modifier = Modifier
+                        .background(Theme.primary()),
+                    contentScale = ContentScale.FillBounds
+                )
+            }
+        }
         Column (modifier = Modifier.fillMaxSize()) {
             Row {
                 // arrow left
+
                 Box(modifier = Modifier
                     .weight(1f)
                     .fillMaxSize(),
