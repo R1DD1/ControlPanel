@@ -152,9 +152,6 @@ fun ApplicationScope.auth() {
         var currentContent by remember { mutableStateOf(0) }
 
         Column (modifier = Modifier.fillMaxSize()) {
-            // init userBar
-            toolBar()
-
             Row {
                 // arrow left
                 Box(modifier = Modifier
@@ -190,6 +187,12 @@ fun ApplicationScope.auth() {
                             contentAlignment = Alignment.Center)
                         {
                             list[currentContent].create()
+                        }
+
+                        Box(contentAlignment = Alignment.Center, modifier = Modifier.weight(1f).fillMaxSize()) {
+                            Row {
+                                ContentHelper.showCurrentContent(currentContent)
+                            }
                         }
 
                         Text(

@@ -39,9 +39,10 @@ compose.desktop {
     application {
         mainClass = "MainKt"
         nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "ControlPanel"
+            targetFormats(TargetFormat.Exe, TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageVersion = "1.0.0"
+
+            appResourcesRootDir.set(project.layout.projectDirectory.dir("resources"))
         }
     }
 }
