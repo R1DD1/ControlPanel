@@ -23,8 +23,7 @@ class News: Content {
         Box(modifier = androidx.compose.ui.Modifier
             .clip(shape = RoundedCornerShape(15))
             .background(Theme.secondary())
-            .height(600.dp)
-            .width(1050.dp),
+            .fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
             Text(text = "КОНТЕНТ 1", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 32.sp)
@@ -38,10 +37,9 @@ class NewYear: Content {
         Box(modifier = androidx.compose.ui.Modifier
             .clip(shape = RoundedCornerShape(15))
             .background(Theme.secondary())
-            .height(600.dp)
-            .width(1050.dp),
+            .fillMaxSize(),
             contentAlignment = Alignment.Center
-        ) {
+        )  {
             Text(text = "КОНТЕНТ 2", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 32.sp)
         }
     }
@@ -53,10 +51,9 @@ class Dings: Content {
         Box(modifier = androidx.compose.ui.Modifier
             .clip(shape = RoundedCornerShape(15))
             .background(Theme.secondary())
-            .height(600.dp)
-            .width(1050.dp),
+            .fillMaxSize(),
             contentAlignment = Alignment.Center
-        ) {
+        )  {
             Text(text = "КОНТЕНТ 3", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 32.sp)        }
     }
 }

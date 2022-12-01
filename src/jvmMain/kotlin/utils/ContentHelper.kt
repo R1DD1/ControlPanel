@@ -35,7 +35,12 @@ object ContentHelper {
         return list.size - 1
     }
 
-    fun autoNext(currentIndex: Int) = currentIndex + 1
+    fun autoNext(currentIndex: Int): Int {
+        if (currentIndex == list.size-1) {
+            return 0
+        }
+        return currentIndex + 1
+    }
 
     @Composable
     fun showCurrentContent (currentIndex: Int) {

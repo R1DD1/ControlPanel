@@ -32,6 +32,7 @@ import user.User
 import utils.Auth
 import utils.ContentHelper
 import utils.UserHelper
+import utils.Utils
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -154,6 +155,10 @@ fun ApplicationScope.auth() {
     } else {
         var currentContent by remember { mutableStateOf(0) }
 
+        Utils.every(1000*10) {
+            currentContent = ContentHelper.autoNext(currentContent)
+        }
+
         if (user!!.permission.canSeeControlPanel) {
             Card(
                 modifier = Modifier
@@ -204,7 +209,8 @@ fun ApplicationScope.auth() {
                     Column (horizontalAlignment = Alignment.CenterHorizontally) {
                         Box(modifier = Modifier
                             .weight(9f)
-                            .fillMaxSize(),
+                            .fillMaxSize()
+                            .padding(100.dp),
                             contentAlignment = Alignment.Center)
                         {
                             list[currentContent].create()
