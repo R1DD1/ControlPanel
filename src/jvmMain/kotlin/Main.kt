@@ -6,6 +6,7 @@ import androidx.compose.ui.graphics.Path
 import user.User
 import androidx.compose.ui.window.*
 import apps.auth
+import client.Client
 import elements.toolBar
 import elements.userBar
 import user.Permission
@@ -26,7 +27,6 @@ fun main() = application {
         resizable = false,
     ) {
         toolBar()
-
         auth()
     }
 }
